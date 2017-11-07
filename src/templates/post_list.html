@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
+#font {
+    font-family: 'Fredericka the Great', cursive;
+}
+    .btn-primary {
+        background: #7c8dc7;
+        color: #ffffff;
+    }
+    body {
+    background-color: lightgray;
+    }
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  position: absolute;
+  overflow: hidden;
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  border-bottom: 1px solid #FFF;
+  border-top: 1px solid #FFF;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(0,1);
+  -ms-transform: scale(0,1);
+  transform: scale(0,1);
+}
+
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.hovereffect:hover img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+  filter: brightness(0.6);
+  -webkit-filter: brightness(0.6);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background-color: transparent;
+  color: #FFF;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0,-100%,0);
+  transform: translate3d(0,-100%,0);
+}
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0,100%,0);
+  transform: translate3d(0,100%,0);
+}
+
+.hovereffect:hover a, .hovereffect:hover p, .hovereffect:hover h2 {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+</style>
+
+<script>
+
+    // Called on body's `onload` event
+    function init() {
+        if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            // Retrieving the text input's value which was stored into localStorage
+            var mytext = localStorage.getItem("mytext");
+            // Writing the value in the document
+            document.getElementById("search_box").value = mytext;
+            document.getElementById("clothes_form").submit();
+        }
+
+    }
+
+</script>
+
+
+<body onLoad="init();">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home">STYLU</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/home">Home</a></li>
+      <li><a href="/posts">Results</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> About</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container text-center">
+    <h1 id = "font">Outfits</h1>
+<form method='GET' action='' id = "clothes_form">
+  <div class = "row">
+<input type='text' id = 'search_box' name='q' class="col-md-11 " placeholder='Search styles' value='{{ request.GET.q }}'/>
+<input type='submit' class = "btn btn-primary btn-sm" value = 'Style U'> </input>
+  </div>
+</form>
+  <!--</div>-->
+</div>
+{% for obj in object_list %}
+
+  <div class="col-md-6">
+        {% if obj.image %}
+            <div class="hovereffect">
+        <img class="img-responsive" src='{{ obj.image.url }}'  alt="">
+            <div class="overlay">
+                <h2>Like this Outfit?</h2>
+				<p>
+					<a href="{{ obj.get_absolute_url }}" style="{font-size: 26pt}">
+                        <font size="10" color="#f5fffa">Shop it!</font>
+                    </a>
+				</p>
+            </div>
+    </div>
+        {% endif %}
+
+  </div>
+
+{% endfor %}
+    </body>
+
+
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+        {% endif %}
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+<!--</div>-->
+
+{% endblock content %}
