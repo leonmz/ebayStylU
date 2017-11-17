@@ -93,6 +93,10 @@
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
+
+.horiz-center {
+    margin: auto;
+}
 </style>
 
 <script>
@@ -145,12 +149,12 @@
   <div class="col-md-6">
         {% if obj.image %}
             <div class="hovereffect">
-        <img class="img-responsive" src='{{ obj.image.url }}'  alt="">
+        <img class="img-responsive horiz-center" src='{{ obj.image.url }}'  alt="">
             <div class="overlay">
                 <h2>Like this Outfit?</h2>
 				<p>
 					<a href="{{ obj.get_absolute_url }}" style="{font-size: 26pt}">
-                        <font size="10" color="#f5fffa">Shop it!</font>
+                        <font size="10" color="#f5fffa">Shop it</font>
                     </a>
 				</p>
             </div>
