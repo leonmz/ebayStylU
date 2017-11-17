@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
 #font {
-    font-family: 'Fredericka the Great', cursive;
+    font-family: 'Julius Sans One', sans-serif;
 }
     .btn-primary {
         background: #7c8dc7;
@@ -125,11 +125,7 @@
       <a class="navbar-brand" href="/home">STYLU</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/home">Home</a></li>
       <li><a href="/posts">Results</a></li>
-    </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> About</a></li>
     </ul>
   </div>
 </nav>
@@ -139,7 +135,7 @@
 <form method='GET' action='' id = "clothes_form">
   <div class = "row">
 <input type='text' id = 'search_box' name='q' class="col-md-11 " placeholder='Search styles' value='{{ request.GET.q }}'/>
-<input type='submit' class = "btn btn-primary btn-sm" value = 'Style U'> </input>
+<input type='submit' class = "btn btn-primary btn-sm" value = 'Search'> </input>
   </div>
 </form>
   <!--</div>-->

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:200');
 #font {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Julius Sans One', sans-serif;
+}
+#font2 {
+    font-family: 'Barlow Condensed', sans-serif;
 }
 </style>
 
@@ -42,11 +46,7 @@
       <a class="navbar-brand" href="/home">STYLU</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/home">Home</a></li>
       <li><a href="/posts">Results</a></li>
-    </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> About</a></li>
     </ul>
   </div>
 </nav>
@@ -56,19 +56,18 @@
     <h1 id="font">STYLU</h1>
       <br>
       <br>
-    <p>what do you want to find a match for?</p>
+    <p id="font2">what do you want to find a match for?</p>
   </div>
 </div>
 
 <br>
 <br>
 <div class="container">
-  <p>Search for the item that you would like:</p>
+  <p>What item do you want to build an outfit around?</p>
   <form name="myform" onSubmit="tosubmit();" action="/posts">
     <div class="form-group">
-      <label for="pwd">Clothes Item:</label>
       <input type="text" class="form-control" id="mytext" placeholder="Enter item" name="data">
-      <span class="help-block">We will find fashionable items relevant for you.</span>
+      <span class="help-block">We'll recommend relevant and shoppable outfits for you.</span>
     </div>
       <a href="/posts" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</a>
 
