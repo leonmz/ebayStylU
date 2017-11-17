@@ -108,7 +108,13 @@
             // Retrieving the text input's value which was stored into localStorage
             var mytext = localStorage.getItem("mytext");
             // Writing the value in the document
-            document.getElementById("search_box").value = mytext;
+            var gender = localStorage.getItem("gender");
+            var gender_text = "";
+            if (gender == "Male")
+                gender_text = "man";
+            else
+                gender_text = "women";
+            document.getElementById("search_box").value = gender_text + " " + mytext;
             document.getElementById("clothes_form").submit();
         }
 

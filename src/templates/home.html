@@ -18,13 +18,14 @@
 
         // Called on form's `onsubmit`
         function tosubmit() {
+
             // Getting the value of your text input
             var mytext = document.getElementById("mytext").value;
+            var gender = document.getElementById("gender").value;
 
             // Storing the value above into localStorage
             localStorage.setItem("mytext", mytext);
-
-            return true;
+            localStorage.setItem("gender", gender);
         }
 
 </script>
@@ -64,14 +65,23 @@
 <br>
 <div class="container">
   <p>What item do you want to build an outfit around?</p>
-  <form name="myform" onSubmit="tosubmit();" action="/posts">
-    <div class="form-group">
-      <input type="text" class="form-control" id="mytext" placeholder="Enter item" name="data">
-      <span class="help-block">We'll recommend relevant and shoppable outfits for you.</span>
-    </div>
-      <a href="/posts" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</a>
 
-  </form>
+  <form action="/posts" >
+
+    <input id = "gender" list="genders" name="browser">
+    <datalist id="genders">
+      <option value="Male">
+      <option value="Female">
+    </datalist>
+
+    <input type="text" class="form-control" id="mytext" placeholder="Enter item" name="data">
+      <span class="help-block">We'll recommend relevant and shoppable outfits for you.</span>
+    <a href="/posts" type="submit" class="btn btn-default" onclick=tosubmit()><span class="glyphicon glyphicon-search"></span> Search</a>
+
+</form>
+
 </div>
 </body>
 </html>
+
+
